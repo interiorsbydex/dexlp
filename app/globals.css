@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-dm-sans), 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+
+  /* Brand palette — Interiors by DeX */
+  --color-background:   #FAFAF8;
+  --color-cream:        #F5EFE6;
+  --color-cream-deep:   #EDE5D8;
+  --color-cream-card:   #F0E9DF;
+  --color-terra:        #C4622D;
+  --color-terra-light:  #F5EDE7;
+  --color-terra-dark:   #A3501F;
+  --color-ink:          #1A1A18;
+  --color-ink-soft:     #3D3B38;
+  --color-muted:        #6B6B6B;
+  --color-border:       #E8E2DC;
+  --color-trust:        #2D6A4F;
+
+  /* Override shadcn tokens to match brand */
+  --color-foreground:         var(--color-ink);
+  --color-card:               var(--color-cream);
+  --color-card-foreground:    var(--color-ink);
+  --color-primary:            var(--color-terra);
+  --color-primary-foreground: #ffffff;
+  --color-secondary:          var(--color-cream-deep);
+  --color-secondary-foreground: var(--color-ink);
+  --color-muted-foreground:   var(--color-muted);
+  --color-border:             var(--color-border);
+  --color-ring:               var(--color-terra);
+  --radius: 0rem;
+}
+
+:root {
+  --background: #FAFAF8;
+  --foreground: #1A1A18;
+  --card: #F5EFE6;
+  --card-foreground: #1A1A18;
+  --popover: #F5EFE6;
+  --popover-foreground: #1A1A18;
+  --primary: #C4622D;
+  --primary-foreground: #ffffff;
+  --secondary: #EDE5D8;
+  --secondary-foreground: #1A1A18;
+  --muted: #F0E9DF;
+  --muted-foreground: #6B6B6B;
+  --accent: #F5EDE7;
+  --accent-foreground: #C4622D;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #E8E2DC;
+  --input: #E8E2DC;
+  --ring: #C4622D;
+  --radius: 0rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+}
