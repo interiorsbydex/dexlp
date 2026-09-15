@@ -1,64 +1,59 @@
-# Google Sheets Integration Setup
+# Google Sheets Integration Setup (Campaign-4)
 
-## Using TinyCommand
+Campaign-4 forms POST to `app/api/submit/route.ts`, which forwards each lead to a
+Google Apps Script webhook. The Apps Script appends a row to your Google Sheet.
 
-Your landing page is now ready to capture leads directly to Google Sheets using **TinyCommand** (free service).
+Target sheet:
+https://docs.google.com/spreadsheets/d/1If_DraysugxVQVhgNVKUcM1dmL3ru_xAafUn0ZP5Llo/edit
 
-### Quick Setup (5 minutes)
+## Setup (one time, ~5 minutes)
 
-1. **Visit TinyCommand**: https://www.tinycommand.com/
+1. Open the Google Sheet linked above.
+2. **Extensions → Apps Script**.
+3. Delete the boilerplate, paste the entire contents of `google-apps-script.gs`
+   (in this repo), then **Save**.
+4. **Deploy → New deployment → Web app**.
+   - **Execute as:** Me
+   - **Who has access:** Anyone
+5. Authorize when prompted, then copy the **Web app URL** (ends in `/exec`).
+6. Add that URL to the project as the `WEBHOOK_URL` environment variable
+   (Vercel Project Settings → Environment Variables, or the "Vars" panel in v0).
 
-2. **Create a Free Account** and set up your Google Sheets
+That's it. New submissions will append rows to the sheet.
 
-3. **Get Your Endpoint URL** from TinyCommand (looks like: `https://api.tinycommand.com/webhooks/...`)
-
-4. **Add to Your Project Environment Variables**:
-   - Go to your Vercel Project Settings → Environment Variables
-   - Add: `NEXT_PUBLIC_TINYCOMMAND_ENDPOINT=<your-endpoint-url>`
-
-5. **That's it!** Your form submissions will now flow directly to Google Sheets
-
-### What Gets Captured
-
-Each form submission includes:
-- Full Name
-- Email Address  
-- Phone Number
-- Budget Range
-- Location (Chennai)
-- Timestamp
-
-### The Data Flow
+## Data Flow
 
 ```
-User Submits Form
+User submits Campaign-4 form (LeadFormC4 / BottomCtaC4)
         ↓
-Lead Form Validates
+POST /api/submit  (app/api/submit/route.ts)
         ↓
-submitLead() Server Action
+GET  WEBHOOK_URL   (Apps Script /exec endpoint)
         ↓
-TinyCommand API
-        ↓
-Google Sheet (Your Account)
+Apps Script appends a row to the Google Sheet
 ```
 
-### File Locations
+## Columns Written
 
-- **Form Component**: `/components/lead-form.tsx`
-- **Server Action**: `/lib/submit-lead.ts`
-- **Environment Variable**: `NEXT_PUBLIC_TINYCOMMAND_ENDPOINT`
+| Timestamp | Name | Email | Phone | Budget | Location | Source |
+|-----------|------|-------|-------|--------|----------|--------|
 
-### Troubleshooting
+`source` distinguishes where the lead came from (e.g. `lp4-hero`).
 
-- **Form not submitting?** Check browser console for errors
-- **Endpoint not set?** Add the environment variable and redeploy
-- **No data in sheet?** Verify TinyCommand URL is correct in settings
+## Notes
 
-### Alternative: Other Services
+- The route also attempts a Neon insert via `DATABASE_URL`. That is optional — if
+  `DATABASE_URL` is not set, the DB insert is skipped and the Google Sheets webhook
+  still runs. Both paths fail independently and silently, so one missing config
+  never blocks the other.
+- Phone numbers are sent with a leading space so Sheets stores them as text and
+  does not turn a leading `+` into a formula error.
 
-Instead of TinyCommand, you can also use:
-- **Zapier** (zapier.com) - More features, paid
-- **Make** (make.com) - Automation platform
-- **Custom API** - Build your own backend endpoint
+## Troubleshooting
 
-Just update the `/lib/submit-lead.ts` file with your API endpoint and payload format.
+- **No rows appearing?** Confirm `WEBHOOK_URL` is set and ends in `/exec`, and that
+  the deployment's "Who has access" is **Anyone**.
+- **403 / authorization errors?** Re-run the deployment and complete the Google
+  authorization prompt.
+- **Check logs:** the route logs `[submit] WEBHOOK_URL not set` when the variable is
+  missing, and `[submit] Apps Script error: <status>` on a non-200 response.
