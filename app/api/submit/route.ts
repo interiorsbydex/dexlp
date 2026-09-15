@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Pool } from 'pg'
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL })
+const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL }) : null
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,14 +9,16 @@ export async function POST(req: NextRequest) {
     const { name, email, phone, budget, location, source } = body
 
     // 1. Save to Neon database
-    try {
-      await pool.query(
-        `INSERT INTO leads (name, email, phone, budget, location, source)
-         VALUES ($1, $2, $3, $4, $5, $6)`,
-        [name || '', email || '', phone || '', budget || '', location || '', source || '']
-      )
-    } catch (dbErr) {
-      console.error('[submit] Neon insert failed:', dbErr)
+    if (pool) {
+      try {
+        await pool.query(
+          `INSERT INTO leads (name, email, phone, budget, location, source)
+           VALUES ($1, $2, $3, $4, $5, $6)`,
+          [name || '', email || '', phone || '', budget || '', location || '', source || '']
+        )
+      } catch (dbErr) {
+        console.error('[submit] Neon insert failed:', dbErr)
+      }
     }
 
     // 2. Send to Google Sheets via Apps Script
