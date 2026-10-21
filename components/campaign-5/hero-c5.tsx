@@ -12,15 +12,15 @@ type CopyVariant = {
 };
 
 const DEFAULT_COPY: CopyVariant = {
-  h1: "The Interior Company in Chennai That Puts Everything in Writing.",
-  sub: "From a single modular kitchen to a complete 2BHK or 3BHK home, every project comes with a 15-year warranty and fixed pricing you can hold us to.",
+  h1: "Interior Designers in Chennai That Put Everything in Writing.",
+  sub: "Complete 2BHK, 3BHK and villa interiors from a home interior company with a 15-year warranty and fixed pricing you can hold us to.",
   checklistItem: "Transparent Fixed Pricing on Every Project",
 };
 
 const VARIANT_COPY: Record<string, CopyVariant> = {
   kitchen: {
-    h1: "Modular Kitchen Designers in Chennai Who Put Every Price in Writing.",
-    sub: "We design and install modular kitchens across Chennai, with fixed pricing and a 15-year warranty you can hold us to.",
+    h1: "Interior Designers in Chennai That Put Everything in Writing.",
+    sub: "Complete 2BHK, 3BHK and villa interiors from a home interior company with a 15-year warranty and fixed pricing you can hold us to.",
     checklistItem: "Transparent Fixed Pricing on Every Kitchen",
   },
   "2bhk": {
@@ -104,28 +104,28 @@ export function HeroC5() {
               <HeroCopyContent />
             </Suspense>
 
-            {/* Mobile Stats */}
-            <div className="flex gap-6 mb-8">
-              <div>
-                <p className="text-3xl font-serif font-medium text-white">15 yrs</p>
-                <p className="text-xs text-gray-300 mt-1">Warranty. First 5 Free Replacement.</p>
-              </div>
-              <div>
-                <p className="text-3xl font-serif font-medium text-white">45 days*</p>
-                <p className="text-xs text-gray-300 mt-1">Execution Timeline</p>
-              </div>
-              <div>
-                <p className="text-3xl font-serif font-medium text-white">Eleven+</p>
-                <p className="text-xs text-gray-300 mt-1">Years of Expertise</p>
-              </div>
-            </div>
-
             {/* Mobile Checkmarks */}
             <ul className="space-y-2 text-xs text-white mb-8">
               <Suspense fallback={<HeroChecklistMarkup checklistItem={DEFAULT_COPY.checklistItem} />}>
                 <HeroChecklistContent />
               </Suspense>
             </ul>
+
+            {/* Mobile Stats */}
+            <div className="flex gap-6 mb-8">
+              <div>
+                <p className="text-3xl font-medium text-white">15 yrs</p>
+                <p className="text-xs text-gray-300 mt-1">Warranty. First 5 Free Replacement.</p>
+              </div>
+              <div>
+                <p className="text-3xl font-medium text-white">45 days*</p>
+                <p className="text-xs text-gray-300 mt-1">Execution Timeline</p>
+              </div>
+              <div>
+                <p className="text-3xl font-medium text-white">11+</p>
+                <p className="text-xs text-gray-300 mt-1">Years of Expertise</p>
+              </div>
+            </div>
           </div>
 
           <div id="hero-form-card" className="w-full bg-white rounded-lg shadow-2xl overflow-hidden">
@@ -156,26 +156,26 @@ export function HeroC5() {
               <HeroCopyContent />
             </Suspense>
 
-            <div className="flex gap-8 mb-10">
-              <div>
-                <p className="text-4xl font-serif font-medium text-white">15 yrs</p>
-                <p className="text-sm text-gray-300 mt-1">Warranty. First 5 Free Replacement.</p>
-              </div>
-              <div>
-                <p className="text-4xl font-serif font-medium text-white">45 days*</p>
-                <p className="text-sm text-gray-300 mt-1">Execution Timeline</p>
-              </div>
-              <div>
-                <p className="text-4xl font-serif font-medium text-white">Eleven+</p>
-                <p className="text-sm text-gray-300 mt-1">Years of Expertise</p>
-              </div>
-            </div>
-
             <ul className="space-y-3 text-sm text-white">
               <Suspense fallback={<HeroChecklistMarkup checklistItem={DEFAULT_COPY.checklistItem} />}>
                 <HeroChecklistContent />
               </Suspense>
             </ul>
+
+            <div className="flex gap-8 mt-10">
+              <div>
+                <p className="text-4xl font-medium text-white">15 yrs</p>
+                <p className="text-sm text-gray-300 mt-1">Warranty. First 5 Free Replacement.</p>
+              </div>
+              <div>
+                <p className="text-4xl font-medium text-white">45 days*</p>
+                <p className="text-sm text-gray-300 mt-1">Execution Timeline</p>
+              </div>
+              <div>
+                <p className="text-4xl font-medium text-white">11+</p>
+                <p className="text-sm text-gray-300 mt-1">Years of Expertise</p>
+              </div>
+            </div>
           </div>
 
           {/* Right: Form Card */}
