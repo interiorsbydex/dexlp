@@ -28,7 +28,7 @@ const COUNTRY_CODES = [
   { code: "+27", label: "+27  South Africa" },
 ];
 
-const BUDGET_OPTIONS = ["Below ₹5 Lacs", "₹5L – ₹12L", "₹12L – ₹25L", "Above ₹25L"];
+const BUDGET_OPTIONS = ["Below ₹8 Lacs", "₹8L – ₹12L", "₹12L – ₹25L", "Above ₹25L"];
 
 type FormData = {
   name: string;
