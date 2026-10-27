@@ -69,12 +69,41 @@ export function LeadFormC5() {
     setForm((prev) => ({ ...prev, phone: digits }));
   };
 
+  const getUtmParameters = () => {
+    if (typeof window === "undefined") {
+      return {
+        utm_source: "",
+        utm_medium: "",
+        utm_campaign: "",
+        utm_term: "",
+        gad_source: "",
+        gad_campaignid: "",
+        gbraid: "",
+        gclid: "",
+      };
+    }
+
+    const searchParams = new URLSearchParams(window.location.search);
+
+    return {
+      utm_source: searchParams.get("utm_source") || "",
+      utm_medium: searchParams.get("utm_medium") || "",
+      utm_campaign: searchParams.get("utm_campaign") || "",
+      utm_term: searchParams.get("utm_term") || "",
+      gad_source: searchParams.get("gad_source") || "",
+      gad_campaignid: searchParams.get("gad_campaignid") || "",
+      gbraid: searchParams.get("gbraid") || "",
+      gclid: searchParams.get("gclid") || "",
+    };
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
 
     try {
+      const utmParameters = getUtmParameters();
       const res = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -85,6 +114,7 @@ export function LeadFormC5() {
           budget: form.budget,
           location: form.location,
           source: "lp5-hero",
+          ...utmParameters,
         }),
       });
       if (!res.ok) {

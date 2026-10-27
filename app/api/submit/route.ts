@@ -6,7 +6,22 @@ const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, phone, budget, location, source } = body;
+    const {
+      name,
+      email,
+      phone,
+      budget,
+      location,
+      source,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_term,
+      gad_source,
+      gad_campaignid,
+      gbraid,
+      gclid,
+    } = body;
 
     // 1. Save to Neon database
     if (pool) {
@@ -38,6 +53,14 @@ export async function POST(req: NextRequest) {
         phone: phone,
         budget: budget,
         location: location,
+        utm_source,
+        utm_medium,
+        utm_campaign,
+        utm_term,
+        gad_source,
+        gad_campaignid,
+        gbraid,
+        gclid,
       };
 
       const response = await fetch(endpoint, {

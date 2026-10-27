@@ -196,6 +196,34 @@ export function LeadFormC4() {
     }
   };
 
+  const getUtmParameters = () => {
+    if (typeof window === "undefined") {
+      return {
+        utm_source: "",
+        utm_medium: "",
+        utm_campaign: "",
+        utm_term: "",
+        gad_source: "",
+        gad_campaignid: "",
+        gbraid: "",
+        gclid: "",
+      };
+    }
+
+    const searchParams = new URLSearchParams(window.location.search);
+
+    return {
+      utm_source: searchParams.get("utm_source") || "",
+      utm_medium: searchParams.get("utm_medium") || "",
+      utm_campaign: searchParams.get("utm_campaign") || "",
+      utm_term: searchParams.get("utm_term") || "",
+      gad_source: searchParams.get("gad_source") || "",
+      gad_campaignid: searchParams.get("gad_campaignid") || "",
+      gbraid: searchParams.get("gbraid") || "",
+      gclid: searchParams.get("gclid") || "",
+    };
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmissionError("");
@@ -205,6 +233,8 @@ export function LeadFormC4() {
     setSubmitting(true);
 
     try {
+      const utmParameters = getUtmParameters();
+
       const response = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -215,6 +245,7 @@ export function LeadFormC4() {
           budget: form.budget,
           location: form.location,
           source: "lp4-hero",
+          ...utmParameters,
         }),
       });
       const result = await response.json().catch(() => ({}));
