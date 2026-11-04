@@ -86,11 +86,17 @@ export function HeroC5() {
       <div className="relative w-full min-h-screen flex flex-col md:flex-row items-stretch">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image src="/images/hero-bg.png" alt="Interior design showcase in Chennai" fill priority className="object-cover" />
+          <Image
+            src="/images/diwali-banner.png"
+            alt="Interior design showcase in Chennai"
+            fill
+            priority
+            className="object-cover"
+          />
           <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        {/* Mobile Layout */}
+        {/* Mobile Layout 
         <div className="md:hidden relative z-10 w-full flex flex-col px-4 pt-24 pb-32">
           <div className="mb-12">
             <div className="inline-flex mb-5 px-3 py-2 border border-white/40 rounded-full">
@@ -104,14 +110,12 @@ export function HeroC5() {
               <HeroCopyContent />
             </Suspense>
 
-            {/* Mobile Checkmarks */}
             <ul className="space-y-2 text-xs text-white mb-8">
               <Suspense fallback={<HeroChecklistMarkup checklistItem={DEFAULT_COPY.checklistItem} />}>
                 <HeroChecklistContent />
               </Suspense>
             </ul>
 
-            {/* Mobile Stats */}
             <div className="flex gap-6 mb-8">
               <div>
                 <p className="text-3xl font-medium text-white">15 yrs</p>
@@ -139,12 +143,10 @@ export function HeroC5() {
               <LeadFormC5 />
             </div>
           </div>
-        </div>
+        </div>*/}
 
-        {/* Desktop Layout */}
         <div className="hidden md:flex relative z-10 w-full px-8 max-w-7xl mx-auto items-center justify-between pt-28">
-          {/* Left: Copy */}
-          <div className="text-white flex-1 max-w-xl">
+          {/*<div className="text-white flex-1 max-w-xl">
             <div className="inline-flex mb-6 px-4 py-2 border border-white/40 rounded-full whitespace-nowrap">
               <span className="text-xs font-medium tracking-widest uppercase flex items-center gap-2">
                 <span className="text-white">★★★★★</span>
@@ -176,7 +178,7 @@ export function HeroC5() {
                 <p className="text-sm text-gray-300 mt-1">Years of Expertise</p>
               </div>
             </div>
-          </div>
+          </div>*/}
 
           {/* Right: Form Card */}
           <div className="flex-1 flex justify-end pt-20 pb-20">
