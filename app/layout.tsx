@@ -54,13 +54,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         {children}
-        <iframe
-          src="https://promotion.gotrackier.com/pixel?av=6af551868d621e097e0899b3"
-          scrolling="no"
-          frameBorder="0"
-          width="1"
-          height="1"
-        ></iframe>
       </body>
     </html>
   );
