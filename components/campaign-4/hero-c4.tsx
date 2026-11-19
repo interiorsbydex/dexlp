@@ -86,17 +86,11 @@ export function HeroC4() {
       <div className="relative w-full min-h-screen flex flex-col md:flex-row items-stretch">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/diwali-banner.png"
-            alt="Interior design showcase in Chennai"
-            fill
-            priority
-            className="object-cover"
-          />
+          <Image src="/images/hero-bg.png" alt="Interior design showcase in Chennai" fill priority className="object-cover" />
           <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        {/* Mobile Layout 
+        {/* Mobile Layout */}
         <div className="md:hidden relative z-10 w-full flex flex-col px-4 pt-24 pb-32">
           <div className="mb-12">
             <div className="inline-flex mb-5 px-3 py-2 border border-white/40 rounded-full">
@@ -143,10 +137,10 @@ export function HeroC4() {
               <LeadFormC4 />
             </div>
           </div>
-        </div>*/}
+        </div>
 
         <div className="hidden md:flex relative z-10 w-full px-8 max-w-7xl mx-auto items-center justify-between pt-28">
-          {/* Desktop Layout 
+          {/* Desktop Layout */}
           <div className="text-white flex-1 max-w-xl">
             <div className="inline-flex mb-6 px-4 py-2 border border-white/40 rounded-full whitespace-nowrap">
               <span className="text-xs font-medium tracking-widest uppercase flex items-center gap-2">
@@ -179,7 +173,7 @@ export function HeroC4() {
                 <HeroChecklistContent />
               </Suspense>
             </ul>
-          </div>*/}
+          </div>
 
           <div className="flex-1 flex justify-end pt-20 pb-20">
             <div className="w-full max-w-sm bg-white rounded-lg shadow-2xl overflow-hidden">
