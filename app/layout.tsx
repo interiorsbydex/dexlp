@@ -33,6 +33,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable} bg-background scroll-smooth`}>
+      <head>
+        <script async src="https://truepulsetracking.com/js/script.js?id=131"></script>
+      </head>
       <body className="font-sans antialiased">
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
