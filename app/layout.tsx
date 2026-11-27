@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Html, Head, NextScript } from "next/document";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -32,10 +33,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable} bg-background scroll-smooth`}>
-      <head>
-        <script async src="https://truepulsetracking.com/js/script.js?id=131"></script>
-      </head>
+    <Html lang="en" className={`${cormorant.variable} ${dmSans.variable} bg-background scroll-smooth`}>
+      <Head>
+        <Script async src="https://truepulsetracking.com/js/script.js?id=131"></Script>
+      </Head>
       <body className="font-sans antialiased">
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
@@ -58,6 +59,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* End Google Tag Manager (noscript) */}
         {children}
       </body>
-    </html>
+    </Html>
   );
 }
